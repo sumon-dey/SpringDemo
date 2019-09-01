@@ -9,11 +9,24 @@ public class SpringHelloApp {
 		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 
 		// retrieve bean from the spring container
-		Coach theCoach = context.getBean("myCoach", Coach.class);
+		Coach theBaseballCoach = context.getBean("myBaseballCoach", Coach.class);
 		// where, "myCoach" is the bean id and "Coach" is the interface
 
 		// call methods on the bean
-		System.out.println(theCoach.getDailyWorkout());
+		System.out.println(theBaseballCoach.getDailyWorkout());
+		System.out.println(theBaseballCoach.getDailyFortune());
+
+		System.out.println("***************************************************************");
+
+		// retrieve bean from the spring container
+		Coach theTrackCoach = context.getBean("myTrackCoach", Coach.class);
+		// where, "myCoach" is the bean id and "Coach" is the interface
+
+		// call methods on the bean
+		System.out.println(theTrackCoach.getDailyWorkout());
+		System.out.println(theTrackCoach.getDailyFortune());
+
+		System.out.println("***************************************************************");
 
 		// close the application context
 		context.close();

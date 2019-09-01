@@ -6,9 +6,38 @@
     http://www.springframework.org/schema/context
     http://www.springframework.org/schema/context/spring-context.xsd">
 
+	<!-- This is the Spring Config File -->
+
+	<!-- Load the properties file: sport.properties present in the classpath -->
+	<context:property-placeholder location="classpath:sport.properties" />
+
 	<!-- Define your beans here -->
-	<bean id="myCoach" class="com.sam.springdemo.TrackCoach">
+
+	<!-- Define the dependency -->
+	<bean id="myFortuneService" class="com.sam.springdemo.HappyFortuneService">
 	</bean>
+
+	<bean id="myBaseballCoach" class="com.sam.springdemo.BaseballCoach">
+		<!-- Set up Constructor Injection for Dependency Injection -->
+		<constructor-arg ref="myFortuneService"></constructor-arg>
+	</bean>
+
+	<bean id="myTrackCoach" class="com.sam.springdemo.TrackCoach">
+		<!-- Set up Constructor Injection for Dependency Injection -->
+		<constructor-arg ref="myFortuneService"></constructor-arg>
+	</bean>
+
+	<bean id="myCricketCoach" class="com.sam.springdemo.CricketCoach">
+		<!-- Set up Setter Injection for Dependency Injection -->
+		<property name="fortuneService" ref="myFortuneService"></property>
+		<!-- Literal values injection using values -->
+		<!-- <property name="emailAddress" value="test@test.com"></property> <property 
+			name="team" value="Kolkata Knight Riders"></property> -->
+		<!-- Literal values injection from properties file -->
+		<property name="emailAddress" value="${emailAddressFromPropertiesFile}"></property>
+		<property name="team" value="${teamFromPropertiesFile}"></property>
+	</bean>
+
 </beans>
 
 
