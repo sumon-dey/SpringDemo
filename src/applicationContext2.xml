@@ -9,7 +9,6 @@
 	<!-- Add Entry to Enable Component Scanning -->
 	<context:component-scan base-package="com.sam.springdemo.annotations"></context:component-scan>
 
-
 </beans>
 
 
